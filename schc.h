@@ -7,6 +7,10 @@
 #define UDP_HLEN				8
 #define IP6_HLEN				40
 
+
+// Geonetworking layer definition
+#define USE_GNW					1
+
 // UDP can only be used in conjunction with IPv6
 #define USE_UDP					USE_IP6_UDP
 #define USE_IP6					USE_IP6_UDP
@@ -82,7 +86,9 @@ typedef enum {
 	COAP_C,
 	COAP_MID,
 	COAP_TKN,
-	COAP_PAYLOAD
+	COAP_PAYLOAD,
+	// Geonetworking fields
+	GNW_V
 } schc_header_fields;
 
 static const char * const schc_header_field_names[] = {
@@ -143,6 +149,13 @@ struct schc_field {
 	unsigned char target_value[MAX_FIELD_LENGTH];
 	uint8_t (*MO)(struct schc_field* target_field, unsigned char* field_value, uint16_t field_offset);
 	CDA action;
+};
+
+struct schc_gnw_rule_t {
+	uint8_t up;
+	uint8_t down;
+	uint8_t length;
+	struct schc_field content[IP6_FIELDS];
 };
 
 // specific protocol layer structure

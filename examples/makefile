@@ -1,3 +1,6 @@
+compressgnw: compress_gnw.c ../compressor.c ../jsmn.c ../picocoap.c ../bit_operations.c ../schc.c
+	gcc -g $(CFLAGS) -o compressgnw compress_gnw.c ../compressor.c ../jsmn.c ../picocoap.c ../bit_operations.c ../schc.c -lm
+
 compress: compress.c ../compressor.c ../jsmn.c ../picocoap.c ../bit_operations.c ../schc.c
 	gcc -g $(CFLAGS) -o compress compress.c ../compressor.c ../jsmn.c ../picocoap.c ../bit_operations.c ../schc.c -lm
 
